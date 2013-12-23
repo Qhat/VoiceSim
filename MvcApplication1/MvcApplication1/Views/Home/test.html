@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Test</title> 
+    <style type="text/css">
+      body{
+        max-width: 300px;
+        max-height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <audio id="live_audio" autoplay controls></audio>
+	
+	<script>
+		function startRecord()
+		{
+			navigator.webkitGetUserMedia({video:false, audio:true},
+			function(localMediaStream) 
+			{
+			var audio = document.querySelector('audio');
+            audio.src = window.webkitURL.createObjectURL(localMediaStream);
+			audio.onloadedmetadata = function(e) 
+			{
+				audio = null;
+			};
+          }
+		);
+				
+		}
+		
+		
+		
+	</script>
+	
+	
+	<p><button onclick="startRecord()" type="button">Record!</button></p>
+	<p><button onclick="stopRecord()" type="button">stop!</button></p>
+	</body>
+</html>
+
